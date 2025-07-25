@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2703a973-69bf-419e-80ed-25aa5635523b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/MarsCodeWorkspaceAppSettings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/7125dceb-bc00-4175-acf5-3adb0cf8f4b7.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/7125dceb-bc00-4175-acf5-3adb0cf8f4b7/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/7125dceb-bc00-4175-acf5-3adb0cf8f4b7/storage_v2/_src_/schema/mysql.osA4Bg.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/7125dceb-bc00-4175-acf5-3adb0cf8f4b7/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/7125dceb-bc00-4175-acf5-3adb0cf8f4b7/storage_v2/_src_/schema/sys.zb4BAA.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/easyCodeTableSettingEncode.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/constants/UserConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/util/ResponseResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exception/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exception/src/main/java/com/yk/ExceptionApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exception/src/main/java/com/yk/controller/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exception/src/main/java/com/yk/controller/TestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exception/src/main/java/com/yk/entity/BasicException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exception/src/main/java/com/yk/entity/BusinessException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exception/src/main/java/com/yk/entity/ExceptionEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exception/src/main/java/com/yk/utils/ResultJsonTools.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exception/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exception/src/main/resources/templates/error.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exception/target/classes/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exception/target/classes/com/yk/ExceptionApplication.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exception/target/classes/com/yk/controller/GlobalExceptionHandler.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exception/target/classes/com/yk/controller/TestController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exception/target/classes/com/yk/entity/BasicException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exception/target/classes/com/yk/entity/BusinessException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exception/target/classes/com/yk/entity/ExceptionEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exception/target/classes/com/yk/utils/ResultJsonTools.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exception/target/classes/templates/error.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/forum/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/forum/src/main/java/com/yk/ForumApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/forum/src/main/java/com/yk/controller/ForumController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/forum/src/main/java/com/yk/controller/PostController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/forum/src/main/java/com/yk/domain/Post.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/forum/src/main/java/com/yk/mapper/PostMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/forum/src/main/java/com/yk/service/PostService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/forum/src/main/java/com/yk/service/impl/PostServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/forum/src/main/resources/ application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/forum/src/main/resources/mapper/PostMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/forum/target/classes/ application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/forum/target/classes/com/yk/ForumApplication.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/forum/target/classes/com/yk/controller/ForumController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/com/yk/GateWayApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/com/yk/GatewayConfigProperties.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/com/yk/MyNacosConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/com/yk/controller/controller.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/com/yk/filter/AuthGlobalFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/resources/bootstrap.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/resources/templates/error.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/bootstrap.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/com/yk/GateWayApplication.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/com/yk/GatewayConfigProperties$RouteDefinition.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/com/yk/GatewayConfigProperties.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/com/yk/MyNacosConfig.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/com/yk/controller/controller.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/com/yk/filter/AuthGlobalFilter.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/templates/error.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login/src/main/java/com/yk/UserApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login/src/main/java/com/yk/config/TokenInterceptor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login/src/main/java/com/yk/config/WebConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login/src/main/java/com/yk/controller/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login/src/main/java/com/yk/domain/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login/src/main/java/com/yk/dto/LoginForm.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login/src/main/java/com/yk/mapper/UserMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login/src/main/java/com/yk/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login/src/main/java/com/yk/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login/src/main/java/com/yk/utils/JwtUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login/src/main/resources/mapper/UserMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login/target/classes/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login/target/classes/com/yk/UserApplication.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login/target/classes/com/yk/config/TokenInterceptor.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login/target/classes/com/yk/config/WebConfig.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login/target/classes/com/yk/controller/UserController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login/target/classes/com/yk/utils/JwtUtils.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/payment/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/payment/src/main/java/com/yk/PaymentApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/payment/src/main/java/com/yk/config/TokenInterceptor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/payment/src/main/java/com/yk/config/WebConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/payment/src/main/java/com/yk/controller/PaymentController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/payment/src/main/java/com/yk/utils/JwtUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/payment/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/payment/target/classes/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/payment/target/classes/com/yk/PaymentApplication.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/payment/target/classes/com/yk/controller/PaymentController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/payment/target/classes/com/yk/utils/JwtUtils.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin File" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="workspaceImportEnabled" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="30Df8v6TMIuIU4mP1QT4OegwNDq" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "jdk.selected.JAVA_MODULE": "17",
+    "last_directory_selection": "E:/springcloud-learning/cloud-demo/login/src/main/java/com/yk/service/impl",
+    "last_opened_file_path": "E:/springcloud-learning/cloud-demo/login/src/main/resources/mapper",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.27931035",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "spring.configuration.checksum": "15bf85531fbd874ecde1cf4518fda93d",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\springcloud-learning\cloud-demo\login\src\main\resources\mapper" />
+      <recent name="E:\springcloud-learning\cloud-demo\login\src\main\java\com\yk\service" />
+      <recent name="E:\springcloud-learning\cloud-demo\login\src\main\java\com\yk" />
+      <recent name="E:\springcloud-learning\cloud-demo\exception\src\main\resources" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.yk.domain" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.ForumApplication">
+    <configuration name="ExceptionApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="exception" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.yk.ExceptionApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.yk.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ForumApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="forum" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.yk.ForumApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.yk.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GateWayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="gateway" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.yk.GateWayApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.yk.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PaymentApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="payment" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.yk.PaymentApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.yk.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="login" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.yk.UserApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.yk.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.ForumApplication" />
+        <item itemvalue="Spring Boot.GateWayApplication" />
+        <item itemvalue="Spring Boot.UserApplication" />
+        <item itemvalue="Spring Boot.PaymentApplication" />
+        <item itemvalue="Spring Boot.ExceptionApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2703a973-69bf-419e-80ed-25aa5635523b" name="Changes" comment="" />
+      <created>1753166909864</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1753166909864</updated>
+      <workItem from="1753166911020" duration="9327000" />
+      <workItem from="1753177096799" duration="1306000" />
+      <workItem from="1753178414857" duration="4952000" />
+      <workItem from="1753360658789" duration="9312000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
