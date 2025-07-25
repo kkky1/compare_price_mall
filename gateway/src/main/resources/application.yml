@@ -1,0 +1,36 @@
+server:
+  port: 8084
+spring:
+  main:
+    web-application-type: reactive
+  application:
+    name: cloud-gateway
+
+  config:
+    import: nacos:cloud-gateway.yaml
+
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yaml
+        namespace: public
+        group: DEFAULT_GROUP
+    gateway:
+      routes:
+        - id: payment_route  # 路由唯一标识
+          uri: lb://cloud-payment-service  # 目标服务地址（lb表示通过负载均衡转发到注册中心的服务）
+          predicates:  # 路由断言（匹配规则）
+            - Path=/payment/**  # 匹配以 /payment/ 开头的请求路径
+        - id: user_route  # 路由唯一标识
+          uri: lb://cloud-login-service  # 目标服务地址（lb表示通过负载均衡转发到注册中心的服务）
+          predicates:  # 路由断言（匹配规则）
+            - Path=/user/**  # 匹配以 /user/ 开头的请求路径
+        - id: post_route  # 路由唯一标识
+          uri: lb://cloud-forum-service  # 目标服务地址（lb表示通过负载均衡转发到注册中心的服务）
+          predicates:  # 路由断言（匹配规则）
+            - Path=/post/**  # 匹配以 /post/ 开头的请求路径
+        - id: product_route  # 路由唯一标识
+          uri: lb://cloud-goods-service  # 目标服务地址（lb表示通过负载均衡转发到注册中心的服务）
+          predicates:  # 路由断言（匹配规则）
+            - Path=/product/**  # 匹配以 /product/ 开头的请求路径

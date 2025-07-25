@@ -1,0 +1,26 @@
+server:
+  port: 8086
+  error:
+    whitelabel:
+      enabled: false
+spring:
+  mvc:
+    throw-exception-if-no-handler-found: true
+    web:
+      resources:
+        add-mappings: false
+  freemarker:
+    enabled: true
+    template-loader-path: classpath:/templates/
+    suffix: .ftl
+    charset: UTF-8
+    content-type: text/html
+  application:
+    name: cloud-exception-service
+  cloud:
+    nacos:
+      server-addr: 127.0.0.1:8848
+      config:
+        import-check:
+          enabled: false
+        server-addr: 127.0.0.1:8848
