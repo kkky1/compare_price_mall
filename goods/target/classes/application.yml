@@ -1,0 +1,25 @@
+server:
+  port: 8090
+spring:
+  application:
+    name: cloud-goods-service
+  cloud:
+    nacos:
+      server-addr: 127.0.0.1:8848
+      config:
+        import-check:
+          enabled: false
+        server-addr: 127.0.0.1:8848
+# mybatis查询日志
+  mybatis:
+    configuration:
+      log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  logging:
+    level:
+      com.yk.controller: debug
+
+  datasource:
+    username: root
+    password: "020124"
+    url: jdbc:mysql://127.0.0.1:3306/compare_price_mall?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver

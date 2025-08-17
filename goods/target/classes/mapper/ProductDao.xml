@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yk.mapper.ProductMapper">
+
+    <resultMap type="com.yk.domain.Product" id="ProductMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="platform" column="platform" jdbcType="VARCHAR"/>
+        <result property="itemLink" column="item_link" jdbcType="VARCHAR"/>
+        <result property="itemName" column="item_name" jdbcType="VARCHAR"/>
+        <result property="itemPrice" column="item_price" jdbcType="VARCHAR"/>
+        <result property="itemImage" column="item_image" jdbcType="VARCHAR"/>
+        <result property="itemShop" column="item_shop" jdbcType="VARCHAR"/>
+        <result property="shopLink" column="shop_link" jdbcType="VARCHAR"/>
+        <result property="searchKeyword" column="search_keyword" jdbcType="VARCHAR"/>
+        <result property="searchPages" column="search_pages" jdbcType="INTEGER"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <result property="createdAt" column="created_at" jdbcType="TIMESTAMP"/>
+        <result property="updatedAt" column="updated_at" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="ProductMap">
+        select
+          id, platform, item_link, item_name, item_price, item_image, item_shop, shop_link, search_keyword, search_pages, status, created_at, updated_at
+        from product
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="ProductMap">
+        select
+          id, platform, item_link, item_name, item_price, item_image, item_shop, shop_link, search_keyword, search_pages, status, created_at, updated_at
+        from product
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="platform != null and platform != ''">
+                and platform = #{platform}
+            </if>
+            <if test="itemLink != null and itemLink != ''">
+                and item_link = #{itemLink}
+            </if>
+            <if test="itemName != null and itemName != ''">
+                and item_name = #{itemName}
+            </if>
+            <if test="itemPrice != null and itemPrice != ''">
+                and item_price = #{itemPrice}
+            </if>
+            <if test="itemImage != null and itemImage != ''">
+                and item_image = #{itemImage}
+            </if>
+            <if test="itemShop != null and itemShop != ''">
+                and item_shop = #{itemShop}
+            </if>
+            <if test="shopLink != null and shopLink != ''">
+                and shop_link = #{shopLink}
+            </if>
+            <if test="searchKeyword != null and searchKeyword != ''">
+                and search_keyword = #{searchKeyword}
+            </if>
+            <if test="searchPages != null">
+                and search_pages = #{searchPages}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="createdAt != null">
+                and created_at = #{createdAt}
+            </if>
+            <if test="updatedAt != null">
+                and updated_at = #{updatedAt}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from product
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="platform != null and platform != ''">
+                and platform = #{platform}
+            </if>
+            <if test="itemLink != null and itemLink != ''">
+                and item_link = #{itemLink}
+            </if>
+            <if test="itemName != null and itemName != ''">
+                and item_name = #{itemName}
+            </if>
+            <if test="itemPrice != null and itemPrice != ''">
+                and item_price = #{itemPrice}
+            </if>
+            <if test="itemImage != null and itemImage != ''">
+                and item_image = #{itemImage}
+            </if>
+            <if test="itemShop != null and itemShop != ''">
+                and item_shop = #{itemShop}
+            </if>
+            <if test="shopLink != null and shopLink != ''">
+                and shop_link = #{shopLink}
+            </if>
+            <if test="searchKeyword != null and searchKeyword != ''">
+                and search_keyword = #{searchKeyword}
+            </if>
+            <if test="searchPages != null">
+                and search_pages = #{searchPages}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="createdAt != null">
+                and created_at = #{createdAt}
+            </if>
+            <if test="updatedAt != null">
+                and updated_at = #{updatedAt}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into product(platform, item_link, item_name, item_price, item_image, item_shop, shop_link, search_keyword, search_pages, status, created_at, updated_at)
+        values (#{platform}, #{itemLink}, #{itemName}, #{itemPrice}, #{itemImage}, #{itemShop}, #{shopLink}, #{searchKeyword}, #{searchPages}, #{status}, #{createdAt}, #{updatedAt})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into product(platform, item_link, item_name, item_price, item_image, item_shop, shop_link, search_keyword, search_pages, status, created_at, updated_at)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.platform}, #{entity.itemLink}, #{entity.itemName}, #{entity.itemPrice}, #{entity.itemImage}, #{entity.itemShop}, #{entity.shopLink}, #{entity.searchKeyword}, #{entity.searchPages}, #{entity.status}, #{entity.createdAt}, #{entity.updatedAt})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into product(platform, item_link, item_name, item_price, item_image, item_shop, shop_link, search_keyword, search_pages, status, created_at, updated_at)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.platform}, #{entity.itemLink}, #{entity.itemName}, #{entity.itemPrice}, #{entity.itemImage}, #{entity.itemShop}, #{entity.shopLink}, #{entity.searchKeyword}, #{entity.searchPages}, #{entity.status}, #{entity.createdAt}, #{entity.updatedAt})
+        </foreach>
+        on duplicate key update
+        platform = values(platform),
+        item_link = values(item_link),
+        item_name = values(item_name),
+        item_price = values(item_price),
+        item_image = values(item_image),
+        item_shop = values(item_shop),
+        shop_link = values(shop_link),
+        search_keyword = values(search_keyword),
+        search_pages = values(search_pages),
+        status = values(status),
+        created_at = values(created_at),
+        updated_at = values(updated_at)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update product
+        <set>
+            <if test="platform != null and platform != ''">
+                platform = #{platform},
+            </if>
+            <if test="itemLink != null and itemLink != ''">
+                item_link = #{itemLink},
+            </if>
+            <if test="itemName != null and itemName != ''">
+                item_name = #{itemName},
+            </if>
+            <if test="itemPrice != null and itemPrice != ''">
+                item_price = #{itemPrice},
+            </if>
+            <if test="itemImage != null and itemImage != ''">
+                item_image = #{itemImage},
+            </if>
+            <if test="itemShop != null and itemShop != ''">
+                item_shop = #{itemShop},
+            </if>
+            <if test="shopLink != null and shopLink != ''">
+                shop_link = #{shopLink},
+            </if>
+            <if test="searchKeyword != null and searchKeyword != ''">
+                search_keyword = #{searchKeyword},
+            </if>
+            <if test="searchPages != null">
+                search_pages = #{searchPages},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="createdAt != null">
+                created_at = #{createdAt},
+            </if>
+            <if test="updatedAt != null">
+                updated_at = #{updatedAt},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from product where id = #{id}
+    </delete>
+
+</mapper>
+
