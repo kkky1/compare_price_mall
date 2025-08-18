@@ -2,6 +2,7 @@ package com.yk.service.impl;
 import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yk.domain.Product;
+import com.yk.dto.ProductMinPrice;
 import com.yk.dto.SearchRequest;
 import com.yk.dto.SearchResponse;
 import com.yk.mapper.ProductMapper;
@@ -18,6 +19,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 import util.ResponseResult;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -43,6 +46,9 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
 
     @Value("${market.spider.api.url:http://localhost:5000}")
     private String marketSpiderApiUrl;
+
+    @Value("${market.spider.api.specify.url:http://localhost:5001}")
+    private String marketSpiderSpecifyApiUrl;
 
     @Override
     public ResponseResult searchByNameOrList(String name) {
@@ -118,6 +124,46 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
         }
 
     }
+
+//    根据商品名称查询商品
+    public ProductMinPrice getProductMinPrice(String request){
+        //       请求远程的爬虫接口
+        try {
+            log.info("开始搜索商品， 关键词: {} ",request );
+
+            // 1. 调用爬虫API
+            if (request == null || request.isEmpty()){
+                throw new RuntimeException("商品名称不能为空");
+            }
+            String encodedRequest = URLEncoder.encode(request, StandardCharsets.UTF_8);
+            String apiUrl = marketSpiderSpecifyApiUrl + "/api/specific/search?product_name=" + request;
+            System.out.println(apiUrl);
+            log.debug("调用的url: {}", apiUrl);
+            ResponseEntity<ProductMinPrice> response = restTemplate.getForEntity(
+                    apiUrl,
+                    ProductMinPrice.class
+            );
+
+            ProductMinPrice productMinPrice = response.getBody();
+            if (productMinPrice == null || !"success".equals(productMinPrice.getStatus())) {
+                throw new RuntimeException("爬虫API调用失败: " +
+                        (productMinPrice != null ? productMinPrice.getMessage() : "未知错误"));
+            }
+            log.debug("从爬虫API获取到 {} 个商品", productMinPrice.getProducts());
+
+
+            return productMinPrice;
+
+        } catch (Exception e) {
+            log.error("搜索商品失败", e);
+            ProductMinPrice errorResponse = new ProductMinPrice();
+            errorResponse.setStatus("error");
+            errorResponse.setMessage("搜索失败: " + e.getMessage());
+            return errorResponse;
+        }
+    }
+
+
 
 //    查看缓存中是否有该缓存
     private boolean isProductExistInCache(String productName) {

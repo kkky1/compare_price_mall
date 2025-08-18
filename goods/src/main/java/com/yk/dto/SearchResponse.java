@@ -14,4 +14,5 @@ public class SearchResponse {
     private List<Product> products;
     private Double processingTime;
     private String message;
+
 }
