@@ -76,7 +76,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>  implements U
     @Override
     public ResponseResult getInfo(String token) {
 //        获取当前登录的用户
-        token = token.split("Bearer ")[1];
+        if(token.startsWith("Bearer ")){
+            token = token.substring(7);
+        }
+        if (token.startsWith("Bearer ")){
+            token = token.split("Bearer ")[1];
+        }
         String userId = jwtUtils.getUserIdFromToken(token);
         System.out.println("userId"+userId);
         if (userId == null){

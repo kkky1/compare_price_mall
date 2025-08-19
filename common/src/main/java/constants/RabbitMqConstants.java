@@ -25,4 +25,5 @@ public class RabbitMqConstants {
     public static final String PRICE_DECREASE_QUEUE = "PRICE_DECREASE_QUEUE";
 
 
+
 }

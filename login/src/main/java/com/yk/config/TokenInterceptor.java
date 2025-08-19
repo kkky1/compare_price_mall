@@ -1,6 +1,7 @@
 package com.yk.config;
 
 import com.yk.utils.JwtUtils;
+import constants.UserConstants;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -52,9 +53,14 @@ public class TokenInterceptor implements HandlerInterceptor {
         if(token.startsWith("Bearer ")){
             token = token.substring(7);
         }
+        if (token.startsWith("Bearer ")){
+            token = token.split("Bearer ")[1];
+        }
+        System.out.println("token = " + token);
         String usernameFromToken = jwtUtils.getUsernameFromToken(token);
         // 从redis中获取token
-        String tokenFromRedis = (String) redisTemplate.opsForValue().get("login_user_key" + usernameFromToken);
+        String tokenFromRedis = (String) redisTemplate.opsForValue().get(UserConstants.LOGIN_USER_KEY + usernameFromToken);
+        System.out.println("tokenFromRedis = " + tokenFromRedis);
         return tokenFromRedis != null ;
     }
 }

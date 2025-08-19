@@ -3,6 +3,7 @@ package com.yk.controller;
 import com.yk.dto.LoginForm;
 import com.yk.service.UserService;
 import com.yk.utils.JwtUtils;
+import domain.User;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 import util.ResponseResult;
@@ -27,11 +28,9 @@ public class UserController {
     }
 
     @GetMapping("/info")
-    public ResponseResult info(@RequestHeader(value = "Authorization",required = true) String token) {
+    public ResponseResult<User> info(@RequestHeader(value = "Authorization",required = true) String token) {
         return userService.getInfo(token);
     }
-
-
 
 
 

@@ -22,6 +22,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 @Component
 @Slf4j
@@ -122,6 +123,8 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
                 return false;
             }
         // 3. 调用认证服务验证
+//            重新设置redis存活时间
+            redisTemplate.expire(loginUserKey, 1, TimeUnit.HOURS);
             log.debug("当前请求路径已放行");
             return true;
         }
