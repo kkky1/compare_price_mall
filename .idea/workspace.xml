@@ -4,25 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2703a973-69bf-419e-80ed-25aa5635523b" name="Changes" comment="1. 增加了商品降价提醒功能&#10;2. 增加了商品价格趋势功能">
+    <list default="true" id="2703a973-69bf-419e-80ed-25aa5635523b" name="Changes" comment="1.完善了token机制,添加了无感刷新的功能&#10;2.完善了商品降价提醒中的bug: 商品和用户无法绑定.&#10;3.添加了用户获取个人订阅的商品降价商品的功能">
+      <change afterPath="$PROJECT_DIR$/goods/src/main/java/com/yk/fallback/UserFeignFallback.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/constants/ProductPrice.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/constants/ProductPrice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/constants/RabbitMqConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/constants/RabbitMqConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/com/yk/filter/AuthGlobalFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/com/yk/filter/AuthGlobalFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/target/classes/com/yk/filter/AuthGlobalFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/target/classes/com/yk/filter/AuthGlobalFilter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/goods/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/goods/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goods/src/main/java/com/yk/GoodsApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/goods/src/main/java/com/yk/GoodsApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goods/src/main/java/com/yk/consumers/AlertConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/goods/src/main/java/com/yk/consumers/AlertConsumer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/goods/src/main/java/com/yk/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/goods/src/main/java/com/yk/controller/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goods/src/main/java/com/yk/dto/PriceTendency.java" beforeDir="false" afterPath="$PROJECT_DIR$/goods/src/main/java/com/yk/dto/PriceTendency.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goods/target/classes/com/yk/GoodsApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/goods/target/classes/com/yk/GoodsApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/goods/src/main/java/com/yk/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/goods/src/main/java/com/yk/service/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/goods/src/main/java/com/yk/service/impl/ProductServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/goods/src/main/java/com/yk/service/impl/ProductServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/goods/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/goods/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/goods/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/goods/target/classes/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/goods/target/classes/com/yk/controller/ProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/goods/target/classes/com/yk/controller/ProductController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login/src/main/java/com/yk/config/TokenInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/login/src/main/java/com/yk/config/TokenInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login/src/main/java/com/yk/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/login/src/main/java/com/yk/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login/src/main/java/com/yk/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/login/src/main/java/com/yk/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login/target/classes/com/yk/config/TokenInterceptor.class" beforeDir="false" afterPath="$PROJECT_DIR$/login/target/classes/com/yk/config/TokenInterceptor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login/target/classes/com/yk/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/login/target/classes/com/yk/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login/target/classes/com/yk/service/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/login/target/classes/com/yk/service/impl/UserServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/goods/target/classes/com/yk/service/ProductService.class" beforeDir="false" afterPath="$PROJECT_DIR$/goods/target/classes/com/yk/service/ProductService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/goods/target/classes/com/yk/service/impl/ProductServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/goods/target/classes/com/yk/service/impl/ProductServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/login/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/login/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/login/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -174,9 +172,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.GoodsApplication" />
-        <item itemvalue="Spring Boot.GateWayApplication" />
-        <item itemvalue="Spring Boot.UserApplication" />
         <item itemvalue="Spring Boot.ExceptionApplication" />
+        <item itemvalue="Spring Boot.UserApplication" />
+        <item itemvalue="Spring Boot.GateWayApplication" />
         <item itemvalue="Spring Boot.CommonApplication" />
       </list>
     </recent_temporary>
@@ -196,7 +194,7 @@
       <workItem from="1755160872610" duration="2340000" />
       <workItem from="1755220521073" duration="1259000" />
       <workItem from="1755227303439" duration="19509000" />
-      <workItem from="1755479081071" duration="26100000" />
+      <workItem from="1755479081071" duration="31735000" />
     </task>
     <task id="LOCAL-00001" summary="feat: 项目初始化，新增用户登录注册接口">
       <created>1755425424390</created>
@@ -219,7 +217,14 @@
       <option name="project" value="LOCAL" />
       <updated>1755501616545</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="1.完善了token机制,添加了无感刷新的功能&#10;2.完善了商品降价提醒中的bug: 商品和用户无法绑定.&#10;3.添加了用户获取个人订阅的商品降价商品的功能">
+      <created>1755570911347</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1755570911347</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -240,7 +245,8 @@
     <MESSAGE value="完善 &quot;登录时网关验证token问题&quot;&#10;集成 &quot;商城爬虫以及关键词缓存和商品信息存储并且配合小程序端进行商品的显示&quot;" />
     <MESSAGE value="feat: 项目初始化，新增用户登录注册接口" />
     <MESSAGE value="1. 增加了商品降价提醒功能&#10;2. 增加了商品价格趋势功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="1. 增加了商品降价提醒功能&#10;2. 增加了商品价格趋势功能" />
+    <MESSAGE value="1.完善了token机制,添加了无感刷新的功能&#10;2.完善了商品降价提醒中的bug: 商品和用户无法绑定.&#10;3.添加了用户获取个人订阅的商品降价商品的功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.完善了token机制,添加了无感刷新的功能&#10;2.完善了商品降价提醒中的bug: 商品和用户无法绑定.&#10;3.添加了用户获取个人订阅的商品降价商品的功能" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -248,12 +254,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/goods/src/main/java/com/yk/controller/ProductController.java</url>
-          <line>270</line>
+          <line>285</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/goods/src/main/java/com/yk/controller/ProductController.java</url>
-          <line>267</line>
+          <line>282</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>

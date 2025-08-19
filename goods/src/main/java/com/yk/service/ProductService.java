@@ -25,4 +25,6 @@ public interface ProductService extends IService<Product> {
     SearchResponse crawProduct(SearchRequest crawlProductRequest);
 
     ProductMinPrice getProductMinPrice(String productName);
+
+    ResponseResult getSubscribedProducts();
 }

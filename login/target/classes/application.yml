@@ -1,13 +1,20 @@
 server:
   port: 8087
+
 spring:
   mvc:
     throw-exception-if-no-handler-found: true
-    web:
-      resources:
-        add-mappings: false
+  web:
+    resources:
+      add-mappings: false
   application:
     name: cloud-login-service
+  # Sentinel 配置（属于 spring 的直接子项，与 application 同级）
+  sentinel:
+    transport:
+      dashboard: 127.0.0.1:8858
+      port: 8719
+  # Cloud 配置（属于 spring 的直接子项，与 application 同级）
   cloud:
     nacos:
       server-addr: 127.0.0.1:8848
@@ -15,9 +22,14 @@ spring:
         import-check:
           enabled: false
         server-addr: 127.0.0.1:8848
-
+  # 数据库配置（属于 spring 的直接子项，与 application 同级）
   datasource:
     username: root
     password: "020124"
     url: jdbc:mysql://127.0.0.1:3306/compare_price_mall?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.jdbc.Driver
+
+# Feign 配置（顶级配置，与 spring 同级）
+feign:
+  sentinel:
+    enabled: true

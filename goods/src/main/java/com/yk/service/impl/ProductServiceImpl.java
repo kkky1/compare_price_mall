@@ -2,13 +2,18 @@ package com.yk.service.impl;
 import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yk.domain.Product;
+import com.yk.dto.PriceTendency;
 import com.yk.dto.ProductMinPrice;
 import com.yk.dto.SearchRequest;
 import com.yk.dto.SearchResponse;
+import com.yk.feign.UserFeignClient;
 import com.yk.mapper.ProductMapper;
 import com.yk.service.ProductService;
+import constants.ProductPrice;
 import constants.UserConstants;
+import domain.User;
 import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,7 +27,9 @@ import util.ResponseResult;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -39,10 +46,17 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
     private ProductMapper productMapper;
 
     @Resource
-    private RedisTemplate<String, List<String>> redisTemplate;
+    private RedisTemplate<String, Object> redisTemplate;
+
 
     @Autowired
     private RestTemplate restTemplate;
+    
+    @Resource
+    private UserFeignClient userFeignClient;
+
+    @Resource
+    private HttpServletRequest request;
 
     @Value("${market.spider.api.url:http://localhost:5000}")
     private String marketSpiderApiUrl;
@@ -65,7 +79,7 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
             log.info("开始搜索商品，关键词: {}, 平台: {}, 页数: {}",
                     request.getKeyword(), request.getPlatform(), request.getMaxPages());
 //            查看缓存中是否有该信息
-            List<String> searchHistory = redisTemplate.opsForValue().get(UserConstants.PRODUCT_NAME_KEY);
+            List<String> searchHistory = (List<String>) redisTemplate.opsForValue().get(UserConstants.PRODUCT_NAME_KEY);
             if (searchHistory == null){
                 searchHistory = new ArrayList<>();
             }
@@ -163,11 +177,80 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
         }
     }
 
+    @Override
+    public ResponseResult getSubscribedProducts() {
+
+        try {
+            String token = request.getHeader("Authorization");
+            if (token == null) {
+                return ResponseResult.fail("未提供认证token");
+            }
+
+            // 处理Bearer token
+            if (token.startsWith("Bearer ")) {
+                token = token.substring(7);
+            }
+
+            log.debug("处理后的token: {}", token);
+
+            ResponseResult userInfo = userFeignClient.getUserInfo(token);
+            if (userInfo.getStatus() != 200) {
+                log.error("获取用户信息失败: {}", userInfo.getMessage());
+                return ResponseResult.fail("获取用户信息失败: " + userInfo.getMessage());
+            }
+
+            User user = BeanUtil.copyProperties(userInfo.getData(), User.class);
+            Long userId = user.getId();
+
+            if (userId == null) {
+                return ResponseResult.fail("无法获取用户ID");
+            }
+
+            log.debug("获取用户 {} 的订阅商品列表", userId);
+
+            // 从Redis中获取用户的订阅商品列表
+            // 修复：直接获取Long类型的商品ID集合，不是List<Long>
+            Set<Object> subscribedProductIds = (Set<Object>) redisTemplate.opsForSet().members(ProductPrice.USER_PRODUCT_CONNECTION + userId);
+
+            log.debug("从Redis中获取到用户 {} 的订阅商品ID: {}", userId, subscribedProductIds);
+
+            if (subscribedProductIds == null || subscribedProductIds.isEmpty()) {
+                log.info("用户 {} 暂无订阅商品", userId);
+                return ResponseResult.success(Collections.emptyList());
+            }
+            
+            log.debug("用户订阅的商品ID: {}", subscribedProductIds);
+            
+            List<Product> products = new ArrayList<>();
+
+            // 修复：直接遍历商品ID，不需要get(0)
+            for (Object productIdObj : subscribedProductIds) {
+                try {
+                    Long productId = Long.valueOf(productIdObj.toString());
+                    Product product = productMapper.selectById(productId);
+                    if (product != null) {
+                        products.add(product);
+                    } else {
+                        log.warn("商品ID {} 在数据库中不存在", productId);
+                    }
+                } catch (Exception e) {
+                    log.warn("处理商品ID {} 时出错: {}", productIdObj, e.getMessage());
+                }
+            }
+
+            log.info("用户 {} 订阅了 {} 个商品", userId, products.size());
+            return ResponseResult.success(products);
+
+        } catch (Exception e) {
+            log.error("获取订阅列表失败", e);
+            return ResponseResult.fail("获取订阅列表失败: " + e.getMessage());
+        }
+    }
 
 
-//    查看缓存中是否有该缓存
+    //    查看缓存中是否有该缓存
     private boolean isProductExistInCache(String productName) {
-        List<String> productNames = redisTemplate.opsForValue().get(UserConstants.PRODUCT_NAME_KEY);
+        List<String> productNames = (List<String>) redisTemplate.opsForValue().get(UserConstants.PRODUCT_NAME_KEY);
         if (productNames == null) {
             return false;
         }
@@ -184,7 +267,7 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
     public void saveProducts(List<Product> products) {
         if (products != null && !products.isEmpty()) {
             // 从 Redis 取缓存
-            List<String> buffProducts = redisTemplate.opsForValue().get(UserConstants.PRODUCT_NAME_KEY);
+            List<String> buffProducts = (List<String>) redisTemplate.opsForValue().get(UserConstants.PRODUCT_NAME_KEY);
             if (buffProducts == null) {
                 buffProducts = new ArrayList<>(); // 初始化，避免 NPE
             }

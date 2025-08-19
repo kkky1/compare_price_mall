@@ -1,6 +1,8 @@
 package com.yk.controller;
 
 import cn.hutool.core.bean.BeanUtil;
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.yk.domain.Product;
 import com.yk.dto.PriceAlertMessage;
 import com.yk.dto.PriceTendency;
@@ -56,6 +58,7 @@ public class ProductController {
     private HttpServletRequest request;
 
     @GetMapping("/list")
+    @SentinelResource(value = "ProductController#list", blockHandler = "listBlockHandler")
     public ResponseResult list(@RequestParam(value = "name",required = false)
                                String name){
         List<Product> list = productMapper.selectListByName(name);
@@ -63,11 +66,19 @@ public class ProductController {
         return ResponseResult.success(list);
     }
 
+
+    /**
+     * 测试兜底返回机制
+     * @param name
+     * @return
+     */
     @GetMapping("/hello")
+    @SentinelResource(value = "ProductController#hello", blockHandler = "helloBlockHandler")
     public ResponseResult hello(@RequestParam(value = "name",required = false)
                                String name){
-        log.debug("查询结果：{}");
-        return ResponseResult.success("hello");
+        ResponseResult authorization = userFeignClient.getUserInfo(request.getHeader("Authorization"));
+
+        return authorization;
     }
 
 
@@ -75,7 +86,7 @@ public class ProductController {
 
 
     // 每隔 1  分钟执行一次
-    @Scheduled(fixedRate = 1 * 60 * 1000) // 每分钟执行一次
+    @Scheduled(fixedRate = 60 * 60 * 1000) // 每小时执行一次
     public void checkPrice() {
         log.info("开始检查商品价格");
 
@@ -192,6 +203,7 @@ public class ProductController {
 
 
     @GetMapping("/getProductMinPrice")
+    @SentinelResource(value = "ProductController#getProductMinPrice", blockHandler = "getProductMinPriceBlockHandler")
     public ResponseResult getProductMinPrice(@RequestParam("name") String name){
         ProductMinPrice productMinPrice = productService.getProductMinPrice(name);
         return ResponseResult.success(productMinPrice);
@@ -203,6 +215,7 @@ public class ProductController {
      * @return
      */
     @GetMapping("/getPriceTendency")
+    @SentinelResource(value = "ProductController#getPriceTendency", blockHandler = "getPriceTendencyBlockHandler")
     public ResponseResult getPriceTendency(@RequestParam("productId") Long productId){
         try {
             Object priceData = redisTemplate.opsForValue().get(PRODUCT_PRICE_TREND + productId);
@@ -229,6 +242,7 @@ public class ProductController {
      * 调用 爬虫接口 来爬取对应的商品信息
      */
     @PostMapping("/crawProduct")
+    @SentinelResource(value = "ProductController#crawProduct", blockHandler = "crawProductBlockHandler")
     public ResponseResult crawProduct(@RequestBody SearchRequest crawlProductRequest){
         SearchResponse searchResponse = productService.crawProduct(crawlProductRequest);
         return ResponseResult.success(searchResponse);
@@ -238,6 +252,7 @@ public class ProductController {
      * 用户订阅商品价格监控
      */
     @GetMapping("/subscribePriceAlert")
+    @SentinelResource(value = "ProductController#subscribePriceAlert", blockHandler = "subscribePriceAlertBlockHandler")
     public ResponseResult subscribePriceAlert(@RequestParam("productId") Long productId) {
         log.info("收到订阅请求，商品ID: {}", productId);
         
@@ -278,6 +293,11 @@ public class ProductController {
             // 将用户添加到商品的订阅列表中
             String subscribeKey = ProductPrice.PRICE_USER_CONNECTION + productId;
             redisTemplate.opsForSet().add(subscribeKey, userId);
+
+
+            // 将用户添加到商品的订阅列表中
+            String userProductKey = ProductPrice.USER_PRODUCT_CONNECTION + userId;
+            redisTemplate.opsForSet().add(userProductKey, productId);
             
 
             
@@ -313,6 +333,7 @@ public class ProductController {
      * 用户取消订阅商品价格监控
      */
     @PostMapping("/unsubscribePriceAlert")
+    @SentinelResource(value = "ProductController#unsubscribePriceAlert", blockHandler = "unsubscribePriceAlertBlockHandler")
     public ResponseResult unsubscribePriceAlert(@RequestParam Long productId) {
         try {
             String token = request.getHeader("Authorization");
@@ -362,49 +383,55 @@ public class ProductController {
      * 获取用户订阅的商品列表
      */
     @GetMapping("/mySubscriptions")
+    @SentinelResource(value = "ProductController#mySubscriptions", blockHandler = "mySubscriptionsBlockHandler")
     public ResponseResult getSubscribedProducts() {
-        try {
-            String token = request.getHeader("Authorization");
-            if (token == null) {
-                return ResponseResult.fail("未提供认证token");
-            }
-            
-            // 处理Bearer token
-            if (token.startsWith("Bearer ")) {
-                token = token.substring(7);
-            }
 
-            log.debug("处理后的token: {}", token);
+        return productService.getSubscribedProducts();
 
-            ResponseResult userInfo = userFeignClient.getUserInfo(token);
-            if (userInfo.getStatus() != 200) {
-                log.error("获取用户信息失败: {}", userInfo.getMessage());
-                return ResponseResult.fail("获取用户信息失败: " + userInfo.getMessage());
-            }
-            
-            User user = BeanUtil.copyProperties(userInfo.getData(), User.class);
-            Long userId = user.getId();
-            
-            if (userId == null) {
-                return ResponseResult.fail("无法获取用户ID");
-            }
-            
-            log.debug("获取用户 {} 的订阅商品列表", userId);
-            
-            // 从Redis中获取用户的订阅商品列表
-            Set<Object> subscribedProducts = redisTemplate.opsForSet().members(ProductPrice.USER_PRODUCT_CONNECTION + userId);
-            if (subscribedProducts == null || subscribedProducts.isEmpty()) {
-                log.info("用户 {} 暂无订阅商品", userId);
-                return ResponseResult.success(Collections.emptyList());
-            }
-            
-            log.info("用户 {} 订阅了 {} 个商品", userId, subscribedProducts.size());
-            return ResponseResult.success(subscribedProducts);
-            
-        } catch (Exception e) {
-            log.error("获取订阅列表失败", e);
-            return ResponseResult.fail("获取订阅列表失败: " + e.getMessage());
-        }
+
+
+    }
+
+    // ========== Sentinel 限流降级处理方法 ==========
+    
+    public ResponseResult listBlockHandler(String name, BlockException ex) {
+        log.warn("商品列表接口被限流，参数: {}", name);
+        return ResponseResult.fail("服务繁忙，请稍后重试");
+    }
+    
+    public ResponseResult helloBlockHandler(String name, BlockException ex) {
+        log.warn("hello接口被限流，参数: {}", name);
+        return ResponseResult.fail("服务繁忙，请稍后重试");
+    }
+    
+    public ResponseResult getProductMinPriceBlockHandler(String name, BlockException ex) {
+        log.warn("获取商品最低价格接口被限流，参数: {}", name);
+        return ResponseResult.fail("服务繁忙，请稍后重试");
+    }
+    
+    public ResponseResult getPriceTendencyBlockHandler(Long productId, BlockException ex) {
+        log.warn("获取商品价格趋势接口被限流，商品ID: {}", productId);
+        return ResponseResult.fail("服务繁忙，请稍后重试");
+    }
+    
+    public ResponseResult crawProductBlockHandler(SearchRequest request, BlockException ex) {
+        log.warn("爬取商品接口被限流，关键词: {}", request.getKeyword());
+        return ResponseResult.fail("服务繁忙，请稍后重试");
+    }
+    
+    public ResponseResult subscribePriceAlertBlockHandler(Long productId, BlockException ex) {
+        log.warn("订阅商品价格监控接口被限流，商品ID: {}", productId);
+        return ResponseResult.fail("服务繁忙，请稍后重试");
+    }
+    
+    public ResponseResult unsubscribePriceAlertBlockHandler(Long productId, BlockException ex) {
+        log.warn("取消订阅商品价格监控接口被限流，商品ID: {}", productId);
+        return ResponseResult.fail("服务繁忙，请稍后重试");
+    }
+    
+    public ResponseResult mySubscriptionsBlockHandler(BlockException ex) {
+        log.warn("获取用户订阅列表接口被限流");
+        return ResponseResult.fail("服务繁忙，请稍后重试");
     }
 
 
