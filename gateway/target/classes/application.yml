@@ -5,32 +5,80 @@ spring:
     web-application-type: reactive
   application:
     name: cloud-gateway
-
-  config:
-    import: nacos:cloud-gateway.yaml
-
+  sentinel:
+    transport:
+      dashboard: 127.0.0.1:8868
+      port: 8720
+      client-ip: 127.0.0.1
+    eager: true
+    web-context-unify: false
+    # Gateway专用配置
+    gateway:
+      enabled: true
+      # 启用API分组
+      api-group:
+        enabled: true
+      # 启用请求分组
+      request-group:
+        enabled: true
+      # 启用响应分组
+      response-group:
+        enabled: true
+      # 启用异常分组
+      exception-group:
+        enabled: true
   cloud:
+    compatibility-verifier:
+      enabled: false
     nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
       config:
         server-addr: 127.0.0.1:8848
         file-extension: yaml
         namespace: public
         group: DEFAULT_GROUP
+        import-check:
+          enabled: false
     gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
       routes:
-        - id: payment_route  # 路由唯一标识
-          uri: lb://cloud-payment-service  # 目标服务地址（lb表示通过负载均衡转发到注册中心的服务）
-          predicates:  # 路由断言（匹配规则）
-            - Path=/payment/**  # 匹配以 /payment/ 开头的请求路径
-        - id: user_route  # 路由唯一标识
-          uri: lb://cloud-login-service  # 目标服务地址（lb表示通过负载均衡转发到注册中心的服务）
-          predicates:  # 路由断言（匹配规则）
-            - Path=/user/**  # 匹配以 /user/ 开头的请求路径
-        - id: post_route  # 路由唯一标识
-          uri: lb://cloud-forum-service  # 目标服务地址（lb表示通过负载均衡转发到注册中心的服务）
-          predicates:  # 路由断言（匹配规则）
-            - Path=/post/**  # 匹配以 /post/ 开头的请求路径
-        - id: product_route  # 路由唯一标识
-          uri: lb://cloud-goods-service  # 目标服务地址（lb表示通过负载均衡转发到注册中心的服务）
-          predicates:  # 路由断言（匹配规则）
-            - Path=/product/**  # 匹配以 /product/ 开头的请求路径
+        - id: payment_route
+          uri: lb://cloud-payment-service
+          predicates:
+            - Path=/payment/**
+          filters:
+            - name: RequestRateLimiter
+        - id: user_route
+          uri: lb://cloud-login-service
+          predicates:
+            - Path=/user/**
+        - id: post_route
+          uri: lb://cloud-forum-service
+          predicates:
+            - Path=/post/**
+        - id: product_route
+          uri: lb://cloud-goods-service
+          predicates:
+            - Path=/product/**
+
+# 日志配置
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.web.cors: DEBUG
+    com.yk: DEBUG
+    com.alibaba.csp.sentinel: DEBUG
+    com.alibaba.csp.sentinel.gateway: DEBUG
+    # 添加路由调试日志
+    org.springframework.cloud.gateway.filter: DEBUG
+    org.springframework.cloud.gateway.handler: DEBUG
+
+sentinel:
+  dashboard:
+    auth:
+      username: sentinel
+      password: sentinel

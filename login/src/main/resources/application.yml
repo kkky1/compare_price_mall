@@ -10,12 +10,14 @@ spring:
   application:
     name: cloud-login-service
   # Sentinel 配置（属于 spring 的直接子项，与 application 同级）
-  sentinel:
-    transport:
-      dashboard: 127.0.0.1:8858
-      port: 8719
+#  sentinel:
+#    transport:
+#      dashboard: 127.0.0.1:8858
+#      port: 8719
   # Cloud 配置（属于 spring 的直接子项，与 application 同级）
   cloud:
+    compatibility-verifier:
+      enabled: false
     nacos:
       server-addr: 127.0.0.1:8848
       config:

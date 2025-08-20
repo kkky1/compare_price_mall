@@ -1,5 +1,7 @@
 package com.yk.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,6 +17,7 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class PriceAlertMessage implements Serializable {
     
     private static final long serialVersionUID = 1L;
@@ -47,6 +50,7 @@ public class PriceAlertMessage implements Serializable {
     /**
      * 提醒时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date alertTime;
     
     /**

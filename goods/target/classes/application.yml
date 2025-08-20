@@ -5,13 +5,13 @@ spring:
   application:
     name: cloud-goods-service
   # Sentinel配置（属于spring的直接子项）
-  sentinel:
-    transport:
-      dashboard: 127.0.0.1:8858
-      port: 8719
-      client-ip: 127.0.0.1
-    eager: true
-    web-context-unify: false
+#  sentinel:
+#    transport:
+#      dashboard: 127.0.0.1:8858
+#      port: 8719
+#      client-ip: 127.0.0.1
+#    eager: true
+#    web-context-unify: false
     datasource:
       ds:
         nacos:
@@ -47,6 +47,7 @@ spring:
         multiplier: 1
         max-attempts: 3
     port: 5672
+    # 允许反序列化的类
   # MyBatis配置（属于spring的直接子项）
   mybatis:
     configuration:

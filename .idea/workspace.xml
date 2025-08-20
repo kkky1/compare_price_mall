@@ -4,22 +4,52 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2703a973-69bf-419e-80ed-25aa5635523b" name="Changes" comment="1.完善了token机制,添加了无感刷新的功能&#10;2.完善了商品降价提醒中的bug: 商品和用户无法绑定.&#10;3.添加了用户获取个人订阅的商品降价商品的功能">
-      <change afterPath="$PROJECT_DIR$/goods/src/main/java/com/yk/fallback/UserFeignFallback.java" afterDir="false" />
+    <list default="true" id="2703a973-69bf-419e-80ed-25aa5635523b" name="Changes" comment="1.引入了sentinel,对业务频繁的接口进行限流管理操作&#10;2.对product-&gt;user的调用完善了兜底返回的机制&#10;3.完善了readme.md">
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/com/yk/config/GatewayConfiguration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/target/classes/util/ResponseResult.class" beforeDir="false" afterPath="$PROJECT_DIR$/common/target/classes/util/ResponseResult.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/target/test-classes/SpringTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/forum/target/classes/ application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/forum/target/classes/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/forum/target/classes/com/yk/ForumApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/forum/target/classes/com/yk/controller/ForumController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/forum/target/classes/com/yk/controller/PostController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/forum/target/classes/com/yk/domain/Post.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/forum/target/classes/com/yk/mapper/PostMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/forum/target/classes/com/yk/service/PostService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/forum/target/classes/com/yk/service/impl/PostServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/forum/target/classes/mapper/PostMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/target/classes/com/yk/MyNacosConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/target/classes/com/yk/MyNacosConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/target/classes/com/yk/filter/AuthGlobalFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/target/classes/com/yk/filter/AuthGlobalFilter.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/goods/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/goods/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goods/src/main/java/com/yk/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/goods/src/main/java/com/yk/controller/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goods/src/main/java/com/yk/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/goods/src/main/java/com/yk/service/ProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goods/src/main/java/com/yk/service/impl/ProductServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/goods/src/main/java/com/yk/service/impl/ProductServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/goods/src/main/java/com/yk/GoodsApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/goods/src/main/java/com/yk/GoodsApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/goods/src/main/java/com/yk/dto/PriceAlertMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/goods/src/main/java/com/yk/dto/PriceAlertMessage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/goods/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/goods/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/goods/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/goods/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/goods/target/classes/com/yk/GoodsApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/goods/target/classes/com/yk/GoodsApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/goods/target/classes/com/yk/config/MqConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/goods/target/classes/com/yk/config/MqConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/goods/target/classes/com/yk/config/SentinelConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/goods/target/classes/com/yk/config/SentinelConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/goods/target/classes/com/yk/consumers/AlertConsumer.class" beforeDir="false" afterPath="$PROJECT_DIR$/goods/target/classes/com/yk/consumers/AlertConsumer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/goods/target/classes/com/yk/consumers/PriceDecreaseListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/goods/target/classes/com/yk/consumers/PriceDecreaseListener.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/goods/target/classes/com/yk/controller/ProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/goods/target/classes/com/yk/controller/ProductController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goods/target/classes/com/yk/service/ProductService.class" beforeDir="false" afterPath="$PROJECT_DIR$/goods/target/classes/com/yk/service/ProductService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/goods/target/classes/com/yk/dto/PriceAlertMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/goods/target/classes/com/yk/dto/PriceAlertMessage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/goods/target/classes/com/yk/dto/PriceTendency.class" beforeDir="false" afterPath="$PROJECT_DIR$/goods/target/classes/com/yk/dto/PriceTendency.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/goods/target/classes/com/yk/dto/ProductMinPrice.class" beforeDir="false" afterPath="$PROJECT_DIR$/goods/target/classes/com/yk/dto/ProductMinPrice.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/goods/target/classes/com/yk/dto/SearchRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/goods/target/classes/com/yk/dto/SearchRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/goods/target/classes/com/yk/dto/SearchResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/goods/target/classes/com/yk/dto/SearchResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/goods/target/classes/com/yk/productors/ProductAlert.class" beforeDir="false" afterPath="$PROJECT_DIR$/goods/target/classes/com/yk/productors/ProductAlert.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/goods/target/classes/com/yk/service/impl/ProductServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/goods/target/classes/com/yk/service/impl/ProductServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/login/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/login/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/login/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/login/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/login/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login/target/classes/com/yk/dto/LoginForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/login/target/classes/com/yk/dto/LoginForm.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login/target/classes/com/yk/service/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/login/target/classes/com/yk/service/impl/UserServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment/target/classes/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment/target/classes/com/yk/PaymentApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment/target/classes/com/yk/controller/PaymentController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment/target/classes/com/yk/utils/JwtUtils.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,6 +68,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="MIXED" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/6.1.13/spring-web-6.1.13.jar!/org/springframework/web/bind/annotation/RequestHeader.class" root0="SKIP_INSPECTION" />
@@ -77,11 +108,12 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.27931035",
     "settings.editor.selected.configurable": "preferences.lookFeel",
-    "spring.configuration.checksum": "20d05f14e8ce21801454ce581ccb51a7",
+    "spring.configuration.checksum": "23ee894611a6eef9b81eb0da2a4ad710",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -109,7 +141,7 @@
       <recent name="com.yk.domain" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.GoodsApplication">
+  <component name="RunManager" selected="Spring Boot.GateWayApplication">
     <configuration name="CommonApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="common" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="CommonApplication" />
@@ -133,6 +165,7 @@
     <configuration name="GateWayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="gateway" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.yk.GateWayApplication" />
+      <option name="VM_PARAMETERS" value="-Dcsp.sentinel.dashboard.server=127.0.0.1:8718 -Dcsp.sentinel.api.port=18719 -Dproject.name=kerwin-gateway -Dcsp.sentinel.app.type=1" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.yk.*" />
@@ -169,12 +202,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Spring Boot.CommonApplication" />
+      <item itemvalue="Spring Boot.ExceptionApplication" />
+      <item itemvalue="Spring Boot.GateWayApplication" />
+      <item itemvalue="Spring Boot.GoodsApplication" />
+      <item itemvalue="Spring Boot.UserApplication" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.GoodsApplication" />
-        <item itemvalue="Spring Boot.ExceptionApplication" />
-        <item itemvalue="Spring Boot.UserApplication" />
         <item itemvalue="Spring Boot.GateWayApplication" />
+        <item itemvalue="Spring Boot.GoodsApplication" />
+        <item itemvalue="Spring Boot.UserApplication" />
+        <item itemvalue="Spring Boot.ExceptionApplication" />
         <item itemvalue="Spring Boot.CommonApplication" />
       </list>
     </recent_temporary>
@@ -194,7 +234,8 @@
       <workItem from="1755160872610" duration="2340000" />
       <workItem from="1755220521073" duration="1259000" />
       <workItem from="1755227303439" duration="19509000" />
-      <workItem from="1755479081071" duration="31735000" />
+      <workItem from="1755479081071" duration="36652000" />
+      <workItem from="1755594270569" duration="5804000" />
     </task>
     <task id="LOCAL-00001" summary="feat: 项目初始化，新增用户登录注册接口">
       <created>1755425424390</created>
@@ -224,7 +265,21 @@
       <option name="project" value="LOCAL" />
       <updated>1755570911347</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="1.引入了sentinel,对业务频繁的接口进行限流管理操作&#10;2.对product-&gt;user的调用完善了兜底返回的机制&#10;3.完善了readme.md">
+      <created>1755589452382</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1755589452382</updated>
+    </task>
+    <task id="LOCAL-00006" summary="1.引入了sentinel,对业务频繁的接口进行限流管理操作&#10;2.对product-&gt;user的调用完善了兜底返回的机制&#10;3.完善了readme.md">
+      <created>1755589469010</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1755589469010</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -246,7 +301,8 @@
     <MESSAGE value="feat: 项目初始化，新增用户登录注册接口" />
     <MESSAGE value="1. 增加了商品降价提醒功能&#10;2. 增加了商品价格趋势功能" />
     <MESSAGE value="1.完善了token机制,添加了无感刷新的功能&#10;2.完善了商品降价提醒中的bug: 商品和用户无法绑定.&#10;3.添加了用户获取个人订阅的商品降价商品的功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="1.完善了token机制,添加了无感刷新的功能&#10;2.完善了商品降价提醒中的bug: 商品和用户无法绑定.&#10;3.添加了用户获取个人订阅的商品降价商品的功能" />
+    <MESSAGE value="1.引入了sentinel,对业务频繁的接口进行限流管理操作&#10;2.对product-&gt;user的调用完善了兜底返回的机制&#10;3.完善了readme.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.引入了sentinel,对业务频繁的接口进行限流管理操作&#10;2.对product-&gt;user的调用完善了兜底返回的机制&#10;3.完善了readme.md" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
   <component name="XDebuggerManager">
