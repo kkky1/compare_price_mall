@@ -9,6 +9,7 @@
         <module name="exception" />
         <module name="forum" />
         <module name="common" />
+        <module name="spirng-boot-admin" />
         <module name="goods" />
         <module name="payment" />
         <module name="login" />
@@ -25,6 +26,7 @@
       <module name="goods" options="-parameters" />
       <module name="login" options="-parameters" />
       <module name="payment" options="-parameters" />
+      <module name="spirng-boot-admin" options="-parameters" />
     </option>
   </component>
 </project>

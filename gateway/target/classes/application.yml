@@ -1,6 +1,9 @@
 server:
   port: 8084
+
 spring:
+  config:
+    import: "nacos:gateway-service.yaml"
   main:
     web-application-type: reactive
   application:
@@ -12,73 +15,65 @@ spring:
       client-ip: 127.0.0.1
     eager: true
     web-context-unify: false
-    # Gateway专用配置
     gateway:
       enabled: true
-      # 启用API分组
       api-group:
         enabled: true
-      # 启用请求分组
       request-group:
         enabled: true
-      # 启用响应分组
       response-group:
         enabled: true
-      # 启用异常分组
       exception-group:
         enabled: true
   cloud:
-    compatibility-verifier:
-      enabled: false
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
       config:
         server-addr: 127.0.0.1:8848
-        file-extension: yaml
-        namespace: public
+        namespace: gateway-service
         group: DEFAULT_GROUP
-        import-check:
-          enabled: false
-    gateway:
-      discovery:
-        locator:
-          enabled: true
-          lower-case-service-id: true
-      routes:
-        - id: payment_route
-          uri: lb://cloud-payment-service
-          predicates:
-            - Path=/payment/**
-          filters:
-            - name: RequestRateLimiter
-        - id: user_route
-          uri: lb://cloud-login-service
-          predicates:
-            - Path=/user/**
-        - id: post_route
-          uri: lb://cloud-forum-service
-          predicates:
-            - Path=/post/**
-        - id: product_route
-          uri: lb://cloud-goods-service
-          predicates:
-            - Path=/product/**
+        file-extension: yaml
+    compatibility-verifier:
+      enabled: false
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: admin
+    password: admin
+    virtual-host: /
+    connection-timeout: 30000
+    template:
+      retry:
+        enabled: true
+        initial-interval: 1000
+        multiplier: 1.0
+        max-attempts: 3
 
-# 日志配置
-logging:
-  level:
-    org.springframework.cloud.gateway: DEBUG
-    org.springframework.web.cors: DEBUG
-    com.yk: DEBUG
-    com.alibaba.csp.sentinel: DEBUG
-    com.alibaba.csp.sentinel.gateway: DEBUG
-    # 添加路由调试日志
-    org.springframework.cloud.gateway.filter: DEBUG
-    org.springframework.cloud.gateway.handler: DEBUG
+  gateway:
+    discovery:
+      locator:
+        enabled: true
+        lower-case-service-id: true
+    routes:
+      - id: payment_route
+        uri: lb://cloud-payment-service
+        predicates:
+          - Path=/payment/**
+        filters:
+          - name: RequestRateLimiter
 
-sentinel:
-  dashboard:
-    auth:
-      username: sentinel
-      password: sentinel
+      - id: user_route
+        uri: lb://cloud-login-service
+        predicates:
+          - Path=/user/**
+
+      - id: post_route
+        uri: lb://cloud-forum-service
+        predicates:
+          - Path=/post/**
+
+      - id: product_route
+        uri: lb://cloud-goods-service
+        predicates:
+          - Path=/product/**

@@ -38,10 +38,10 @@ management:
     resources:
       add-mappings: false
   info:
-    version: @project.version@
-    name: @project.artifactId@
-    group: @project.groupId@
-    description: @project.description@
+    version: 1.0-SNAPSHOT
+    name: payment
+    group: org.example
+    description: Parent pom providing dependency and plugin management for applications built with Maven
     #还可以自定义信息
     author: yk
 

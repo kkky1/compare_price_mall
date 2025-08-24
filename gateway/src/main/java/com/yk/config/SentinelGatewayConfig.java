@@ -10,22 +10,7 @@ import com.alibaba.csp.sentinel.slots.block.degrade.DegradeRuleManager;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 import jakarta.annotation.PostConstruct;
-import java.util.ArrayList;
-import java.util.List;
-
-
-
-import com.alibaba.csp.sentinel.slots.block.RuleConstant;
-import com.alibaba.csp.sentinel.slots.block.degrade.DegradeRule;
-import com.alibaba.csp.sentinel.slots.block.degrade.DegradeRuleManager;
-import com.alibaba.csp.sentinel.slots.block.flow.FlowRule;
-import com.alibaba.csp.sentinel.slots.block.flow.FlowRuleManager;
-import jakarta.annotation.PostConstruct;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Configuration;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,10 +18,6 @@ import java.util.List;
  * Sentinel Gateway配置类
  * 配置网关层面的流量控制和熔断降级规则
  */
-
-import com.alibaba.csp.sentinel.slots.block.flow.FlowRule;
-import lombok.extern.slf4j.Slf4j;
-
 @Slf4j
 @Configuration
 public class SentinelGatewayConfig {

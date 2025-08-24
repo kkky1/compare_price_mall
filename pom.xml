@@ -25,6 +25,7 @@
         <module>login</module>
         <module>forum</module>
         <module>goods</module>
+        <module>spirng-boot-admin</module>
     </modules>
 
     <properties>
