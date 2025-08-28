@@ -22,7 +22,7 @@ public class UserController {
     private UserService userService;
 
 
-    @PostMapping("/login")
+    @PostMapping("/user")
     public ResponseResult login(@RequestBody LoginForm loginForm) {
         return userService.loginOrRegister(loginForm);
     }

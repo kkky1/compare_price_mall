@@ -81,11 +81,10 @@
             </exclusions>
         </dependency>
 
+        <!-- Reactive Redis for Gateway RequestRateLimiter (RedisRateLimiter) -->
         <dependency>
-            <groupId>jakarta.servlet</groupId>
-            <artifactId>jakarta.servlet-api</artifactId>
-            <version>6.0.0</version> <!-- 或者和你spring boot版本匹配的版本 -->
-            <scope>provided</scope>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis-reactive</artifactId>
         </dependency>
 
         <!-- 没添加该依赖的话不能从application配置文件配置sentinel -->

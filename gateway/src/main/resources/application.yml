@@ -2,8 +2,6 @@ server:
   port: 8084
 
 spring:
-  config:
-    import: "nacos:gateway-service.yaml"
   main:
     web-application-type: reactive
   application:
@@ -25,17 +23,7 @@ spring:
         enabled: true
       exception-group:
         enabled: true
-  cloud:
-    nacos:
-      discovery:
-        server-addr: 127.0.0.1:8848
-      config:
-        server-addr: 127.0.0.1:8848
-        namespace: gateway-service
-        group: DEFAULT_GROUP
-        file-extension: yaml
-    compatibility-verifier:
-      enabled: false
+
   rabbitmq:
     host: 127.0.0.1
     port: 5672
@@ -50,30 +38,57 @@ spring:
         multiplier: 1.0
         max-attempts: 3
 
-  gateway:
-    discovery:
-      locator:
-        enabled: true
-        lower-case-service-id: true
-    routes:
-      - id: payment_route
-        uri: lb://cloud-payment-service
-        predicates:
-          - Path=/payment/**
-        filters:
-          - name: RequestRateLimiter
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
 
-      - id: user_route
-        uri: lb://cloud-login-service
-        predicates:
-          - Path=/user/**
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+      config:
+        import-check:
+          enabled: false
+    compatibility-verifier:
+      enabled: false
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: payment_route
+          uri: lb://cloud-payment-service
+          predicates:
+            - Path=/payment/**
+          filters:
+            - name: RequestRateLimiter
+        - id: user_route
+          uri: lb://cloud-login-service
+          predicates:
+            - Path=/user/**
+        - id: post_route
+          uri: lb://cloud-forum-service
+          predicates:
+            - Path=/post/**
+        - id: product_route
+          uri: lb://cloud-goods-service
+          predicates:
+            - Path=/product/**
 
-      - id: post_route
-        uri: lb://cloud-forum-service
-        predicates:
-          - Path=/post/**
+# Enable detailed gateway debug logs
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    reactor.netty: INFO
 
-      - id: product_route
-        uri: lb://cloud-goods-service
-        predicates:
-          - Path=/product/**
+# Expose actuator endpoints for troubleshooting
+management:
+  endpoint:
+    gateway:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
